@@ -3,7 +3,7 @@
 A simple package to extend SerialPort communication by adding some async helper methods.
 
 # Getting started
-After Installation, just go ahead and import the corresponding namespace:
+After installation, just go ahead and import the corresponding namespace:
 
 **C#**
 
