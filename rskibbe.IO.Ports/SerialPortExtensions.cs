@@ -46,17 +46,24 @@ namespace rskibbe.IO.Ports
             return response;
         }
 
-        public static async Task WriteLineAsync(SerialPort serialPort, string str)
+        public static async Task WriteLineAsync(this SerialPort serialPort, string str)
         {
             var data = serialPort.Encoding.GetBytes(str + serialPort.NewLine);
             await serialPort.BaseStream.WriteAsync(data, 0, data.Length);
             await serialPort.BaseStream.FlushAsync();
         }
 
-        public static async Task<string> RequestResponseAsync(SerialPort serialPort, string str)
+        public static async Task<string> RequestResponseAsync(this SerialPort serialPort, string str)
         {
             await WriteLineAsync(serialPort, str);
             var response = await ReadLineAsync(serialPort);
+            return response;
+        }
+
+        public static async Task<string> RequestResponseAsync(this SerialPort serialPort, string str, CancellationToken cancellationToken)
+        {
+            await WriteLineAsync(serialPort, str);
+            var response = await ReadLineAsync(serialPort, cancellationToken);
             return response;
         }
 
