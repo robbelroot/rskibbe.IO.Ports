@@ -5,7 +5,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
 	<PackageId>rskibbe.IO.Ports</PackageId>
-	<Version>1.0.3</Version>
+	<Version>1.0.4</Version>
 	<Authors>Robert Skibbe</Authors>
 	<Company>Robert Skibbe</Company>
 	<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
