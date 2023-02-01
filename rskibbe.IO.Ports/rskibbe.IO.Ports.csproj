@@ -6,7 +6,7 @@
     <Nullable>enable</Nullable>
 	<PackageId>rskibbe.IO.Ports</PackageId>
 	<Description>A simple package to extend SerialPort communication by adding some async helper methods.</Description>
-	<Version>1.0.5</Version>
+	<Version>1.0.6</Version>
 	<Authors>Robert Skibbe</Authors>
 	<Company>Robert Skibbe</Company>
 	<GeneratePackageOnBuild>true</GeneratePackageOnBuild>

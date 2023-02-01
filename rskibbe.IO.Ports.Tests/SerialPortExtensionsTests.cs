@@ -10,6 +10,7 @@ public class SerialPortExtensionsTests
     [Test]
     public void Test1()
     {
+        // not time yet..
         Assert.Pass();
     }
 }
