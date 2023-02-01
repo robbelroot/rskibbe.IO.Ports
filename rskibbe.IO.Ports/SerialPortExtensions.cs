@@ -13,7 +13,9 @@ public static class SerialPortExtensions
         var response = "";
         while (true)
         {
-            await serialPort.BaseStream.ReadAsync(buffer, 0, 1);
+            // TO-DO: should use buffer instead of 1 by 1
+            await serialPort.BaseStream.ReadAsync(buffer, 0, 1)
+                .ConfigureAwait(false);
             var character = serialPort.Encoding.GetString(buffer);
             sb.Append(character);
             var completed = StringBuilderEndsWith(sb, serialPort.NewLine);
@@ -33,7 +35,9 @@ public static class SerialPortExtensions
         var response = "";
         while (true)
         {
-            await serialPort.BaseStream.ReadAsync(buffer, 0, 1, cancellationToken);
+            // TO-DO: should handle cancellation better
+            await serialPort.BaseStream.ReadAsync(buffer, 0, 1, cancellationToken)
+                .ConfigureAwait(false);
             var character = serialPort.Encoding.GetString(buffer);
             sb.Append(character);
             var completed = StringBuilderEndsWith(sb, serialPort.NewLine);
@@ -49,21 +53,27 @@ public static class SerialPortExtensions
     public static async Task WriteLineAsync(this SerialPort serialPort, string str)
     {
         var data = serialPort.Encoding.GetBytes(str + serialPort.NewLine);
-        await serialPort.BaseStream.WriteAsync(data, 0, data.Length);
-        await serialPort.BaseStream.FlushAsync();
+        await serialPort.BaseStream.WriteAsync(data, 0, data.Length)
+                .ConfigureAwait(false);
+        await serialPort.BaseStream.FlushAsync()
+                .ConfigureAwait(false);
     }
 
     public static async Task<string> RequestResponseAsync(this SerialPort serialPort, string str)
     {
-        await WriteLineAsync(serialPort, str);
-        var response = await ReadLineAsync(serialPort);
+        await WriteLineAsync(serialPort, str)
+                .ConfigureAwait(false);
+        var response = await ReadLineAsync(serialPort)
+                .ConfigureAwait(false);
         return response;
     }
 
     public static async Task<string> RequestResponseAsync(this SerialPort serialPort, string str, CancellationToken cancellationToken)
     {
-        await WriteLineAsync(serialPort, str);
-        var response = await ReadLineAsync(serialPort, cancellationToken);
+        await WriteLineAsync(serialPort, str)
+                .ConfigureAwait(false);
+        var response = await ReadLineAsync(serialPort, cancellationToken)
+                .ConfigureAwait(false);
         return response;
     }
 
