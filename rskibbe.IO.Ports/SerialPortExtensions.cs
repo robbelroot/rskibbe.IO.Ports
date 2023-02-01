@@ -19,6 +19,7 @@ public static class SerialPortExtensions
             var completed = StringBuilderEndsWith(sb, serialPort.NewLine);
             if (completed)
             {
+                response = sb.ToString();
                 response = response.Substring(0, response.Length - serialPort.NewLine.Length);
                 break;
             }
@@ -39,6 +40,7 @@ public static class SerialPortExtensions
             var completed = StringBuilderEndsWith(sb, serialPort.NewLine);
             if (completed)
             {
+                response = sb.ToString();
                 response = response.Substring(0, response.Length - serialPort.NewLine.Length);
                 break;
             }
